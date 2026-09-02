@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff, Check } from "lucide-react";
 
 function LightningMark({ size = 56 }) {
@@ -36,6 +37,7 @@ const COUNTRIES = [
 ];
 
 export default function SignupPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +68,7 @@ export default function SignupPage() {
       //   options: { data: { full_name: fullName, country } }
       // })
       await new Promise((r) => setTimeout(r, 900));
-      console.log("Inscription simulée :", { fullName, email, country });
+      router.push("/dashboard");
     } catch (err) {
       setError("Une erreur est survenue. Réessaie.");
     } finally {

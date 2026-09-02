@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 
 function LightningMark({ size = 56 }) {
@@ -24,6 +25,7 @@ function LightningMark({ size = 56 }) {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +40,7 @@ export default function LoginPage() {
       // TODO: brancher sur la vraie authentification Supabase
       // const { data, error } = await supabase.auth.signInWithPassword({ email, password })
       await new Promise((r) => setTimeout(r, 900));
-      console.log("Connexion simulée avec", email);
+      router.push("/dashboard");
     } catch (err) {
       setError("Email ou mot de passe incorrect.");
     } finally {
